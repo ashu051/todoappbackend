@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+</style>
+</head>
+<body>
+
+<div id="myDIV" class="header">
+  <h2>My To Do List</h2>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{fm}}
+    <input type="submit" value="Add">
+  </form>
+
+</div>
+
+<ul id="myUL">
+    {% for s in sab %}
+
+  <li>{{s.id}}</li>
+  <li>{{s.name}}</li>
+  <a href="{% url 'updatedata' s.id %}">Update</a>
+   <form action="{% url 'deletedata' s.id %}" method="POST"> 
+                {% csrf_token %} 
+            <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+    {% endfor %}
+
+</ul>
+
+
+</body>
+</html>
